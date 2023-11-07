@@ -4,6 +4,8 @@
 
   This source code is licensed under the BSD-style license found in the
   LICENSE file in the root directory of this source tree.
+
+  https://raw.githubusercontent.com/drtingtp/sheets-kpi-dentur/main/LICENSE
 */
 
 const sheetDenturName = "Dentur";
@@ -55,7 +57,7 @@ function FillDenturFormula() {
     .getNextDataCell(SpreadsheetApp.Direction.UP)
     .getRow();
 
-  console.log("lastFilledRow " + lastFilledRow, "maxRow " + maxRow)
+  //console.log("lastFilledRow " + lastFilledRow, "maxRow " + maxRow)
 
   // early return if formula already filled - i.e. when getNextDataCell() selects row 1
   if (lastFilledRow === 1) {
