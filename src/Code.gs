@@ -1,32 +1,41 @@
-const sheetNameDentur = "Dentur";
+const sheetDenturName = "Dentur";
+const sheetDentur_firstDataCol = 1;
+const sheetDentur_firstDataRow = 3;
 
-/*
-  not used for now
-  need to install onEdit trigger
-  unable to automate without getting extra permission
-*/
+const formulaFirstColumn = "R";
+const formulaLastColumn = "AO";
+
+const sheetPeringkat_dataRanges = [
+  "Peringkat_BilDenturDiisu",
+  "Peringkat_TarikhJT",
+  "Peringkat_TarikhPeringkat",
+  "Peringkat_Ulang",
+];
+
+function onOpen(e) {
+  // Add a custom menu to the spreadsheet.
+  SpreadsheetApp.getUi()
+  .createMenu("KPI Dentur")
+  .addItem("Install", "createTrigger")
+  .addToUi();
+};
+
 function onInsertRow(e) {
-  
   if (e.changeType == "INSERT_ROW") {
     var spreadsheet = e.source
     //console.log("sheet name " + spreadsheet.getSheetName())
 
-    if (spreadsheet.getSheetName() == sheetNameDentur){
+    if (spreadsheet.getSheetName() == sheetDenturName){
       //console.log("sheet name matched")
       FillDenturFormula()
-      // WIP: extend filter range
+      ResizeFilter()
     };
   };
 };
 
 function FillDenturFormula() {
-  const firstColumn = "R";
-  const lastColumn = "AO";
-  const sourceRow = "3";
-
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetNameDentur);
-
-  var sourceRangeNotation = `${firstColumn}${sourceRow}:${lastColumn}${sourceRow}`;
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetDenturName);
+  const sourceRangeNotation = `${formulaFirstColumn}${sheetDentur_firstDataRow}:${formulaLastColumn}${sheetDentur_firstDataRow}`;
   //console.log("sourceRangeNotation " + sourceRangeNotation)
   var sourceRange = sheet.getRange(sourceRangeNotation);
   var maxRow = sheet.getMaxRows();
@@ -34,7 +43,7 @@ function FillDenturFormula() {
 
   // find last row in 1st column
   var lastFilledRow = sheet
-    .getRange(`${firstColumn}${maxRow}`)
+    .getRange(`${formulaFirstColumn}${maxRow}`)
     .getNextDataCell(SpreadsheetApp.Direction.UP)
     .getRow();
 
@@ -45,6 +54,7 @@ function FillDenturFormula() {
     return;
   };
 
+  // define the destination range
   var fillDownRange = sheet.getRange(
     lastFilledRow + 1,
     sourceRange.getColumn(),
@@ -56,25 +66,17 @@ function FillDenturFormula() {
 };
 
 function ResetPeringkat() {
-  // define range names for loop
-  var ranges = [
-    "Peringkat_BilDenturDiisu",
-    "Peringkat_TarikhJT",
-    "Peringkat_TarikhPeringkat",
-    "Peringkat_Ulang",
-  ];
-
   // the cell to return to after clearing
   var initialCellName = "D3"
 
   // shortcut to current sheet
   var sheet = SpreadsheetApp.getActive()
 
-  // loop names and clear cells
-  for (var i = 0; i < ranges.length; i++) {
-    var range = sheet.getRangeByName(ranges[i]);
+  // loop names and reset cells
+  for (var i = 0; i < sheetPeringkat_dataRanges.length; i++) {
+    var range = sheet.getRangeByName(sheetPeringkat_dataRanges[i]);
 
-    if (ranges[i] == "Peringkat_Ulang") {
+    if (sheetPeringkat_dataRanges[i] == "Peringkat_Ulang") {
       range.setValue("FALSE");
     } else {
       range.clearContent();
@@ -84,4 +86,22 @@ function ResetPeringkat() {
   // return to initialCellName
   var range = sheet.getRange(initialCellName)
   sheet.setActiveRange(range)
-}
+};
+
+function ResizeFilter() {
+  var sheet = SpreadsheetApp.getActive().getSheetByName(sheetDenturName)
+  var filter = sheet.getFilter()
+
+  var range = sheet.getRange(
+    sheetDentur_firstDataRow - 1,
+    sheetDentur_firstDataCol,
+    sheet.getMaxRows() - sheetDentur_firstDataRow + 2,
+    sheet.getLastColumn()
+  );
+
+  if (filter != null) {
+    filter.remove()
+  };
+
+  range.createFilter();
+};
