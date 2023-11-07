@@ -1,3 +1,11 @@
+/*
+  Copyright (c) 2023, drtingtp <dr.tingtp@gmail.com>
+  All rights reserved.
+
+  This source code is licensed under the BSD-style license found in the
+  LICENSE file in the root directory of this source tree.
+*/
+
 const sheetDenturName = "Dentur";
 const sheetDentur_firstDataCol = 1;
 const sheetDentur_firstDataRow = 3;
