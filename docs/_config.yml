@@ -1,0 +1,8 @@
+# Site title and subtitle. This is used in _includes/header.html
+title: 'Denture KPI Datasheet'
+subtitle: 'Manual for using Denture KPI Datasheet'
+
+# URL to source code, used in _includes/footer.html
+codeurl: 'https://github.com/drtingtp/sheets-kpi-dentur'
+
+theme: minima
