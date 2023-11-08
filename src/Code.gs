@@ -11,22 +11,29 @@
 const sheetDenturName = "Dentur";
 const sheetDentur_firstDataCol = 1;
 const sheetDentur_firstDataRow = 3;
+const sheetDentur_firstPeringkatCol = 10;
+const sheetDentur_lastPeringkatCol = 16;
 
 const formulaFirstColumn = "R";
 const formulaLastColumn = "AO";
 
+const sheetPeringkatName = "Peringkat";
+
 const sheetPeringkat_dataRanges = [
   "Peringkat_BilDenturDiisu",
   "Peringkat_TarikhJT",
-  "Peringkat_TarikhPeringkat",
+  "Peringkat_TarikhOfficer",
+  "Peringkat_TarikhSesuai",
   "Peringkat_Ulang",
 ];
 
 function onOpen(e) {
-  // Add a custom menu to the spreadsheet.
+  // Add an Addon menu to the spreadsheet.
   SpreadsheetApp.getUi()
   .createMenu("KPI Dentur")
   .addItem("Install", "createTrigger")
+  .addItem("Reset Peringkat", "ResetPeringkat")
+  .addItem("Fix Dentur formula", "FillDenturFormula")
   .addToUi();
 };
 
@@ -75,9 +82,27 @@ function FillDenturFormula() {
   sourceRange.copyTo(fillDownRange);
 };
 
+function CopyPeringkatSummary() {
+  var ss = SpreadsheetApp.getActive()
+  var sourceSheet = ss.getSheetByName(sheetPeringkatName)
+  var sourceRange = sourceSheet.getRange("Peringkat_Summary")
+
+  var destSheet = SpreadsheetApp.getActive().getSheetByName(sheetDenturName)
+  ss.setActiveSheet(destSheet, true)
+  // var destRange = destSheet.getCurrentCell()
+
+  // // check whether destination current cell is in first peringkat col
+  // if (destRange.getColumn() != sheetDentur_firstPeringkatCol) {
+  //   SpreadsheetApp.getUi().alert("Active cell in Dentur not in the correct column.");
+  //   return;
+  // }
+
+  // sourceRange.copyTo(destRange, {contentsOnly:true})
+};
+
 function ResetPeringkat() {
-  // the cell to return to after clearing
-  var initialCellName = "D3"
+  // the cell to return to after reset
+  var initialCellName = "D2"
 
   // shortcut to current sheet
   var sheet = SpreadsheetApp.getActive()
