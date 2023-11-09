@@ -22,9 +22,9 @@ function createTrigger() {
 
   if (onInsertRow_installed === false) {
     ScriptApp.newTrigger("onInsertRow")
-    .forSpreadsheet(ss)
-    .onChange()
-    .create();
+      .forSpreadsheet(ss)
+      .onChange()
+      .create();
 
     SpreadsheetApp.getUi().alert("onInsertRow trigger created.")
   };

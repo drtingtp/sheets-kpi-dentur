@@ -30,11 +30,11 @@ const sheetPeringkat_dataRanges = [
 function onOpen(e) {
   // Add an Addon menu to the spreadsheet.
   SpreadsheetApp.getUi()
-  .createMenu("KPI Dentur")
-  .addItem("Install", "createTrigger")
-  .addItem("Reset Peringkat", "ResetPeringkat")
-  .addItem("Fix Dentur formula", "FillDenturFormula")
-  .addToUi();
+    .createMenu("KPI Dentur")
+    .addItem("Install", "createTrigger")
+    .addItem("Reset Peringkat", "ResetPeringkat")
+    .addItem("Fix Dentur formula", "FillDenturFormula")
+    .addToUi();
 };
 
 function onInsertRow(e) {
@@ -42,7 +42,7 @@ function onInsertRow(e) {
     var spreadsheet = e.source
     //console.log("sheet name " + spreadsheet.getSheetName())
 
-    if (spreadsheet.getSheetName() == sheetDenturName){
+    if (spreadsheet.getSheetName() == sheetDenturName) {
       //console.log("sheet name matched")
       FillDenturFormula()
       ResizeFilter()
