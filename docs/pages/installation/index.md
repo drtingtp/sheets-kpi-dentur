@@ -27,7 +27,7 @@ permalink: /installation/
 {{ site.data.alerts.callout_primary }}
 **Next steps:**
 
-[How to review the source code of the script?]({{ site.baseurl }}/advanced-check-source-code/)
+[How to review the source code of the script?]({{ site.baseurl }}/advanced/review-source-code/)
 
-[How to review permissions that I have granted to this add-on?]({{ site.baseurl }}/advanced-permission)
+[How to review permissions that I have granted to this add-on?]({{ site.baseurl }}/advanced/review-permission/)
 {{ site.data.alerts.end }}

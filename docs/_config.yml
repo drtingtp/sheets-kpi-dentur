@@ -66,6 +66,6 @@ codeurl: 'https://github.com/drtingtp/sheets-kpi-dentur'
 
 header_pages:
   - pages/about.md
-  - pages/installation.md
-  - pages/usage.md
-  - changelog.md
+  - pages/installation/index.md
+  - pages/usage/index.md
+  - pages/changelog.md

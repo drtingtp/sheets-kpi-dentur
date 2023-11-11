@@ -1,9 +1,11 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
 ---
 Welcome to the homepage for Denture KPI Datasheet Add-on.
 
-Denture KPI Datasheet Add-on is an add-on written to improve the usability of the Denture KPI Datasheet.
+Denture KPI Datasheet Add-on is a Google Sheets add-on which enhances functionality of Google Sheets spreadsheet for the purpose of calculating denture treatment KPI.
+
+# Features
+
+- Automatically copies formula when new rows are created.
+- A button to clear the data for calculation sheet.

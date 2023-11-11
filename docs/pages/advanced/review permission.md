@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Permission management
-permalink: /advanced-permission/
+permalink: /advanced/review-permission/
 ---
 
 # Check permission details
