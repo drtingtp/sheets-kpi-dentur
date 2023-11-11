@@ -4,4 +4,6 @@
 
 layout: home
 ---
-Welcome to the homepage for Denture KPI Datasheet Add-on
+Welcome to the homepage for Denture KPI Datasheet Add-on.
+
+Denture KPI Datasheet Add-on is an add-on written to improve the usability of the Denture KPI Datasheet.
