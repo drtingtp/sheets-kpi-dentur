@@ -4,4 +4,4 @@
 
 layout: home
 ---
-This is the index
+Welcome to the homepage for Denture KPI Datasheet Add-on
