@@ -1,3 +1,8 @@
+---
+layout: page
+title: Usage
+permalink: /usage/
+---
 # Usage
 1. data entry - dentur
 1. summary generation - peringkat -> copy to dentur
